@@ -18,6 +18,9 @@ const events = [
   },
 ]
 
+const GOOGLE_FORM_EMBED_URL =
+  'https://docs.google.com/forms/d/e/1FAIpQLSfaKKUSv6nfWMLP7PCe3Az-zIyqskGFkSNmsX9Onv6tmGZYUg/viewform?embedded=true'
+
 function App() {
   return (
     <div className="min-h-screen w-full">
@@ -142,6 +145,32 @@ function App() {
               <p className="font-display text-2xl text-[var(--forest)]/70">
                 Blank Content Image Area
               </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="border-t border-[var(--grid-line)] bg-[var(--shell)] px-6 py-12 md:px-10 md:py-14">
+          <div className="mx-auto w-full max-w-4xl">
+            <p className="text-center text-xs font-bold uppercase tracking-[0.22em] text-[var(--forest)]/90">
+              RSVP Form
+            </p>
+            <h3 className="font-display mt-3 text-center text-3xl leading-tight text-[var(--ink)] md:text-4xl">
+              Can You Attend?
+            </h3>
+            <p className="mx-auto mt-4 max-w-2xl text-center text-sm leading-relaxed text-[var(--ink)]/75 md:text-base">
+              Fill out the form below to let us know if you can join. Replace the
+              embed URL in the code with your Google Form link.
+            </p>
+
+            <div className="mt-8 overflow-hidden rounded-3xl border border-[var(--grid-line)] bg-white shadow-[0_10px_24px_rgba(45,62,52,0.08)]">
+              <iframe
+                title="Can you attend RSVP form"
+                src={GOOGLE_FORM_EMBED_URL}
+                className="h-[760px] w-full"
+                loading="lazy"
+              >
+                Loading Google Form...
+              </iframe>
             </div>
           </div>
         </section>
