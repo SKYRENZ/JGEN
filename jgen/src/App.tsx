@@ -27,7 +27,7 @@ function App() {
       <div className="w-full border-y border-[var(--grid-line)] bg-[var(--shell)]/90">
         <header className="flex flex-wrap items-center justify-between gap-4 border-b border-[var(--grid-line)] px-6 py-5 md:px-10">
           <div className="font-display text-xl font-bold tracking-wide text-[var(--forest)] md:text-2xl">
-            Grace Harbor
+            Jesus Generation
           </div>
           <nav>
             <ul className="flex flex-wrap items-center gap-3 text-sm font-semibold text-[var(--ink)]/85 md:gap-6">
