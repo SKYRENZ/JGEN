@@ -1,120 +1,152 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+const navItems = ['Home', 'About', 'Ministries', 'Events', 'Contact']
+
+const events = [
+  {
+    title: 'Sunday Gathering',
+    time: 'Every Sunday, 9:30 AM',
+    details: 'Worship, teaching, and prayer for all ages.',
+  },
+  {
+    title: 'Youth Night',
+    time: 'Friday, 6:30 PM',
+    details: 'Music, small groups, and leadership mentoring.',
+  },
+  {
+    title: 'Community Table',
+    time: 'First Saturday, 11:00 AM',
+    details: 'Neighborhood meal and outreach support.',
+  },
+]
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="min-h-screen w-full">
+      <div className="w-full border-y border-[var(--grid-line)] bg-[var(--shell)]/90">
+        <header className="flex flex-wrap items-center justify-between gap-4 border-b border-[var(--grid-line)] px-6 py-5 md:px-10">
+          <div className="font-display text-xl font-bold tracking-wide text-[var(--forest)] md:text-2xl">
+            Grace Harbor
+          </div>
+          <nav>
+            <ul className="flex flex-wrap items-center gap-3 text-sm font-semibold text-[var(--ink)]/85 md:gap-6">
+              {navItems.map((item) => (
+                <li key={item}>
+                  <a
+                    href="#"
+                    className="rounded-full px-3 py-1 transition hover:bg-[var(--forest)] hover:text-white"
+                  >
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <button className="rounded-full bg-[var(--forest)] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#244739]">
+            Join Us
+          </button>
+        </header>
 
-      <div className="ticks"></div>
+        <main className="grid gap-0 lg:grid-cols-[1.15fr_0.85fr]">
+          <section className="texture-lines border-b border-[var(--grid-line)] px-6 py-10 md:px-10 md:py-14 lg:border-b-0 lg:border-r">
+            <p className="mb-4 inline-flex rounded-full border border-[var(--gold)]/60 bg-[var(--gold)]/10 px-4 py-1 text-xs font-bold uppercase tracking-[0.24em] text-[var(--forest)]">
+              Welcome Home
+            </p>
+            <h1 className="font-display text-4xl leading-tight text-[var(--ink)] md:text-6xl">
+              A Place To
+              <br />
+              Grow In Faith
+            </h1>
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-[var(--ink)]/80 md:text-lg">
+              Building a Christ-centered community through worship, discipleship,
+              and practical love for our city.
+            </p>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <button className="rounded-full bg-[var(--gold)] px-6 py-3 text-sm font-bold tracking-wide text-white transition hover:bg-[#ab8755]">
+                Plan Your Visit
+              </button>
+              <button className="rounded-full border border-[var(--forest)] px-6 py-3 text-sm font-bold tracking-wide text-[var(--forest)] transition hover:bg-[var(--forest)] hover:text-white">
+                Watch Online
+              </button>
+            </div>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+            <div className="mt-10 grid gap-4 sm:grid-cols-3">
+              {[
+                ['450+', 'Families Connected'],
+                ['22', 'Neighborhood Outreach Teams'],
+                ['15y', 'Serving Our Community'],
+              ].map(([value, label]) => (
+                <article
+                  key={label}
+                  className="rounded-2xl border border-[var(--grid-line)] bg-white px-4 py-4"
+                >
+                  <p className="font-display text-3xl font-bold text-[var(--forest)]">
+                    {value}
+                  </p>
+                  <p className="mt-1 text-sm text-[var(--ink)]/75">{label}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <aside className="placeholder-grid border-b border-[var(--grid-line)] px-6 py-10 md:px-10 md:py-14 lg:border-b-0">
+            <div className="flex h-full min-h-72 flex-col rounded-3xl border border-dashed border-[var(--forest)]/45 bg-white/75 p-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--forest)]/80">
+                Hero Image
+              </p>
+              <div className="mt-4 flex flex-1 items-center justify-center rounded-2xl border-2 border-dashed border-[var(--gold)]/70 bg-[var(--paper)] px-4 text-center">
+                <p className="font-display text-2xl text-[var(--forest)]/70">
+                  Blank Image Placeholder
+                </p>
+              </div>
+              <p className="mt-4 text-sm text-[var(--ink)]/70">
+                Reserved space for your photo or ministry artwork.
+              </p>
+            </div>
+          </aside>
+        </main>
+
+        <section className="grid gap-6 border-t border-[var(--grid-line)] px-6 py-10 md:px-10 md:py-12 lg:grid-cols-3">
+          {events.map((event) => (
+            <article
+              key={event.title}
+              className="rounded-2xl border border-[var(--grid-line)] bg-white p-5 shadow-[0_10px_24px_rgba(45,62,52,0.08)]"
+            >
+              <h2 className="font-display text-2xl text-[var(--ink)]">{event.title}</h2>
+              <p className="mt-2 text-sm font-bold uppercase tracking-wide text-[var(--forest)]">
+                {event.time}
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-[var(--ink)]/75">
+                {event.details}
+              </p>
+            </article>
+          ))}
+        </section>
+
+        <section className="grid gap-6 border-t border-[var(--grid-line)] bg-[#f0ebdf] px-6 py-10 md:px-10 md:py-12 lg:grid-cols-[1fr_1.2fr]">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--forest)]/90">
+              Sermon Library
+            </p>
+            <h3 className="font-display mt-3 text-3xl leading-tight text-[var(--ink)] md:text-4xl">
+              Weekly Messages
+              <br />
+              And Study Notes
+            </h3>
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-[var(--ink)]/75 md:text-base">
+              Keep this area ready for sermon thumbnails and featured study
+              resources.
+            </p>
+          </div>
+          <div className="rounded-3xl border-2 border-dashed border-[var(--forest)]/45 bg-white p-6">
+            <div className="placeholder-grid flex h-56 items-center justify-center rounded-2xl border border-dashed border-[var(--gold)]/70 bg-[var(--paper)] px-4 text-center md:h-64">
+              <p className="font-display text-2xl text-[var(--forest)]/70">
+                Blank Content Image Area
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
   )
 }
 
