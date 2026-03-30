@@ -24,10 +24,15 @@ body {
     radial-gradient(circle at 90% 20%, rgba(143, 168, 143, 0.3) 0%, rgba(143, 168, 143, 0) 48%),
     linear-gradient(180deg, #ebe4d4 0%, var(--paper) 45%, #efe8da 100%);
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 #root {
   min-height: 100vh;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 .font-display {
