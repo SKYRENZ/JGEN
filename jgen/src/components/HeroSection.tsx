@@ -1,3 +1,5 @@
+import upcomingEventImage from '../assets/Uy May Nag Heart.png'
+
 function HeroSection() {
   return (
     <main
@@ -49,17 +51,26 @@ function HeroSection() {
       </section>
 
       <aside className="placeholder-grid px-4 py-8 sm:px-6 md:px-10 md:py-14">
-        <div className="flex h-full min-h-72 flex-col rounded-3xl border border-dashed border-[var(--forest)]/45 bg-white/75 p-6">
+        <div className="flex h-full min-h-72 flex-col rounded-3xl border border-dashed border-[var(--forest)]/45 bg-white/75 p-6 shadow-[0_14px_45px_rgba(15,18,24,0.18)]">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--forest)]/80">
             Hero Image
           </p>
-          <div className="mt-4 flex flex-1 items-center justify-center rounded-2xl border-2 border-dashed border-[var(--gold)]/70 bg-[var(--paper)] px-4 text-center">
-            <p className="font-display text-2xl text-[var(--forest)]/70">
-              Blank Image Placeholder
-            </p>
+          <div className="relative mt-4 flex flex-1 items-center justify-center overflow-hidden rounded-2xl border-2 border-dashed border-[var(--gold)]/70 bg-[var(--paper)]">
+            <img
+              src={upcomingEventImage}
+              alt="Upcoming event poster"
+              className="h-full w-full object-cover"
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0b0d10]/30 via-transparent to-transparent" />
+            <div className="absolute left-3 top-3 rounded-full border border-white/30 bg-black/50 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-white backdrop-blur-sm">
+              Upcoming Event
+            </div>
+            <div className="absolute bottom-3 right-3 rounded-xl bg-white/90 px-3 py-1.5 text-xs font-bold text-[#0b0d10] shadow-sm">
+              Feb 14 • 2PM
+            </div>
           </div>
-          <p className="mt-4 text-sm text-[var(--ink)]/70">
-            Reserved space for your photo or ministry artwork.
+          <p className="mt-4 text-sm font-medium text-[var(--ink)]/80">
+            Upcoming event highlight. Invite your friends and family.
           </p>
         </div>
       </aside>
