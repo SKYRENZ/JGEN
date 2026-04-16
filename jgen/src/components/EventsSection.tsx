@@ -26,12 +26,12 @@ function EventsSection() {
         {events.map((event) => (
           <article
             key={event.title}
-            className="flex min-h-[220px] flex-col justify-between rounded-2xl border border-[var(--grid-line)] bg-white p-7 shadow-[0_10px_24px_rgba(45,62,52,0.08)]"
+            className="flex min-h-[220px] flex-col justify-between rounded-2xl border border-[var(--accent)]/30 bg-gradient-to-br from-white to-[var(--accent)]/5 p-7 shadow-[0_10px_24px_rgba(103,232,249,0.08)] transition hover:border-[var(--accent)]/60 hover:shadow-[0_10px_35px_rgba(103,232,249,0.15)]"
           >
-            <h2 className="font-display text-4xl text-[var(--ink)] md:text-[2.2rem]">
+            <h2 className="font-display text-4xl bg-gradient-to-r from-[var(--primary-mid)] to-[var(--ink)] bg-clip-text text-transparent md:text-[2.2rem]">
               {event.title}
             </h2>
-            <p className="mt-3 text-xl font-bold uppercase tracking-wide text-[var(--forest)] md:text-[1.3rem]">
+            <p className="mt-3 text-xl font-bold uppercase tracking-wide text-[var(--primary-mid)] md:text-[1.3rem]">
               {event.time}
             </p>
             <p className="mt-4 text-xl leading-relaxed text-[var(--ink)]/75 md:text-[1.35rem]">
@@ -42,11 +42,11 @@ function EventsSection() {
       </div>
 
       <div
-        id="ministries"
-        className="scroll-mt-[72px] grid gap-6 bg-[#f0ebdf] px-4 py-8 sm:px-6 md:px-10 md:py-10 lg:grid-cols-[1fr_1.2fr]"
+        id="sermons"
+        className="scroll-mt-[72px] grid gap-6 bg-gradient-to-br from-[var(--accent)]/10 to-[var(--primary-mid)]/10 px-4 py-8 sm:px-6 md:px-10 md:py-10 lg:grid-cols-[1fr_1.2fr] border-y border-[var(--accent)]/20"
       >
         <div>
-          <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--forest)]/90">
+          <p className="text-xs font-bold uppercase tracking-[0.22em] bg-gradient-to-r from-[var(--accent)] to-[var(--primary-mid)] bg-clip-text text-transparent">
             Sermon Library
           </p>
           <h3 className="font-display mt-3 text-3xl leading-tight text-[var(--ink)] md:text-4xl">
@@ -59,9 +59,9 @@ function EventsSection() {
             resources.
           </p>
         </div>
-        <div className="rounded-3xl border-2 border-dashed border-[var(--forest)]/45 bg-white p-6">
-          <div className="placeholder-grid flex h-56 items-center justify-center rounded-2xl border border-dashed border-[var(--gold)]/70 bg-[var(--paper)] px-4 text-center md:h-64">
-            <p className="font-display text-2xl text-[var(--forest)]/70">
+        <div className="rounded-3xl border-2 border-[var(--accent)]/40 bg-white p-6 shadow-[0_10px_24px_rgba(103,232,249,0.08)]">
+          <div className="placeholder-grid flex h-56 items-center justify-center rounded-2xl border border-[var(--accent)]/30 bg-gradient-to-br from-[var(--accent)]/5 to-[var(--primary-mid)]/5 px-4 text-center md:h-64">
+            <p className="font-display text-2xl text-[var(--primary-mid)]/60">
               Blank Content Image Area
             </p>
           </div>

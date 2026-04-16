@@ -7,7 +7,7 @@ function HeroSection() {
       className="scroll-mt-[72px] grid min-h-[calc(100svh-72px)] gap-0 border-b border-[var(--grid-line)] lg:grid-cols-[1.15fr_0.85fr]"
     >
       <section className="texture-lines px-4 py-8 sm:px-6 md:px-10 md:py-14 lg:border-r lg:border-[var(--grid-line)]">
-        <p className="mb-4 inline-flex rounded-full border border-[var(--gold)]/60 bg-[var(--gold)]/10 px-4 py-1 text-xs font-bold uppercase tracking-[0.24em] text-[var(--forest)]">
+        <p className="mb-4 inline-flex rounded-full border border-[var(--primary-mid)] bg-gradient-to-r from-[var(--primary-mid)]/30 to-[var(--accent)]/20 px-4 py-1 text-xs font-bold uppercase tracking-[0.24em] text-[var(--primary-dark)]">
           Welcome Home
         </p>
         <h1 className="font-display text-4xl leading-tight text-[var(--ink)] md:text-6xl">
@@ -23,10 +23,10 @@ function HeroSection() {
         </div>
 
         <div className="mt-8 flex flex-wrap gap-4">
-          <button className="rounded-full bg-[var(--gold)] px-6 py-3 text-sm font-bold tracking-wide text-white transition hover:bg-[#ab8755]">
+          <button className="rounded-full bg-gradient-to-r from-[var(--primary-mid)] to-[var(--primary-light)] px-6 py-3 text-sm font-bold tracking-wide text-white transition hover:shadow-lg hover:shadow-[var(--primary-mid)]/40">
             Plan Your Visit
           </button>
-          <button className="rounded-full border border-[var(--forest)] px-6 py-3 text-sm font-bold tracking-wide text-[var(--forest)] transition hover:bg-[var(--forest)] hover:text-white">
+          <button className="rounded-full border-2 border-[var(--primary-dark)] px-6 py-3 text-sm font-bold tracking-wide text-[var(--primary-dark)] transition hover:bg-[var(--primary-dark)] hover:text-white">
             Watch Online
           </button>
         </div>
@@ -39,9 +39,9 @@ function HeroSection() {
           ].map(([value, label]) => (
             <article
               key={label}
-              className="rounded-2xl border border-[var(--grid-line)] bg-white px-4 py-4"
+              className="rounded-2xl border border-[var(--accent)]/30 bg-gradient-to-br from-white to-[var(--accent)]/5 px-4 py-4 transition hover:border-[var(--accent)]/60 hover:shadow-md hover:shadow-[var(--accent)]/10"
             >
-              <p className="font-display text-3xl font-bold text-[var(--forest)]">
+              <p className="font-display text-3xl font-bold bg-gradient-to-r from-[var(--primary-mid)] to-[var(--accent)] bg-clip-text text-transparent">
                 {value}
               </p>
               <p className="mt-1 text-sm text-[var(--ink)]/75">{label}</p>
@@ -51,11 +51,11 @@ function HeroSection() {
       </section>
 
       <aside className="placeholder-grid px-4 py-8 sm:px-6 md:px-10 md:py-14">
-        <div className="flex h-full min-h-72 flex-col rounded-3xl border border-dashed border-[var(--forest)]/45 bg-white/75 p-6 shadow-[0_14px_45px_rgba(15,18,24,0.18)]">
+          <div className="flex h-full min-h-72 flex-col rounded-3xl border border-2 border-[var(--accent)]/40 bg-white/75 p-6 shadow-[0_14px_45px_rgba(103,232,249,0.12)]">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--forest)]/80">
             Hero Image
           </p>
-          <div className="relative mt-4 flex flex-1 items-center justify-center overflow-hidden rounded-2xl border-2 border-dashed border-[var(--gold)]/70 bg-[var(--paper)]">
+          <div className="relative mt-4 flex flex-1 items-center justify-center overflow-hidden rounded-2xl border-2 border-[var(--accent)] bg-[var(--paper)]">
             <img
               src={upcomingEventImage}
               alt="Upcoming event poster"
