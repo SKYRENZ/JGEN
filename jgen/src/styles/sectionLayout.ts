@@ -1,0 +1,6 @@
+export const SECTION_SCROLL_MARGIN = 'scroll-mt-18'
+export const SECTION_MIN_HEIGHT = 'min-h-[calc(100svh-72px)]'
+export const SECTION_PAD_X = 'px-4 sm:px-6 md:px-10'
+export const SECTION_PAD_Y = 'py-10 md:py-12'
+export const SECTION_WIDTH = 'mx-auto w-full max-w-7xl'
+export const SECTION_STACK_STAGE = 'relative h-104 sm:h-120 lg:h-136'

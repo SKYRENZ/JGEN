@@ -1,178 +1,162 @@
 import { useEffect, useState } from 'react'
 import proofServiceImage from '../assets/JGEN Proof service.png'
+import KatruepaGatheringImage from '../assets/Katruepa Gathering.png'
+import PusoNotebookImage from '../assets/Puso Notebook.jpg'
+import {
+  SECTION_MIN_HEIGHT,
+  SECTION_PAD_X,
+  SECTION_PAD_Y,
+  SECTION_SCROLL_MARGIN,
+  SECTION_STACK_STAGE,
+  SECTION_WIDTH,
+} from '../styles/sectionLayout'
 
-type EventItem = {
+type EventCard = {
+  eyebrow: string
   title: string
-  time: string
-  details: string
-  longDetails: string
-  location: string
-  image?: string
+  description: string
+  note: string
+  image: string
 }
 
-const events = [
+const eventCards = [
   {
+    eyebrow: 'Fellowship',
     title: 'Sunday Proof Service',
-    time: 'Every 1st Sunday of the month',
-    details: 'Worship, teaching, and prayer for all ages.',
-    longDetails:
-      'Join us for an extended worship night with testimonies, prayer, and a message focused on God\'s faithfulness. Bring your family and friends.',
-    location: 'Galilean Worship Center',
+    description: 'Worship, teaching, and prayer for all ages.',
+    note: 'Every 1st Sunday of the month, right after Service',
     image: proofServiceImage,
   },
   {
-    title: 'Youth Night',
-    time: 'Friday, 6:30 PM',
-    details: 'Music, small groups, and leadership mentoring.',
-    longDetails:
-      'A night for students and young adults featuring worship, games, group discussions, and practical leadership coaching.',
-    location: 'JGEN Youth Hall',
+    eyebrow: 'Evangelism',
+    title: 'Katruepa Gathering',
+    description: 'Music, small groups, and leadership mentoring.',
+    note: 'Every 2nd Sunday of the month, 2:00 PM',
+    image: KatruepaGatheringImage,
   },
   {
-    title: 'Community Table',
-    time: 'First Saturday, 11:00 AM',
-    details: 'Neighborhood meal and outreach support.',
-    longDetails:
-      'Serve with us through shared meals, prayer support, and practical outreach for families in need around our community.',
-    location: 'Church Courtyard',
+    eyebrow: 'Discipleship',
+    title: 'CareGroup',
+    description: 'Neighborhood meal and outreach support.',
+    note: 'Schedule to be announced',
+    image: proofServiceImage,
   },
-] satisfies EventItem[]
+  {
+    eyebrow: 'Notebook Session',
+    title: 'Puso Notebook Session',
+    description: 'A guided space for reflection, journaling, and growth.',
+    note: 'Schedule to be announced',
+    image: PusoNotebookImage,
+  },
+] satisfies EventCard[]
 
 function EventsSection() {
-  const [selectedEvent, setSelectedEvent] = useState<EventItem | null>(null)
+  const [activeIndex, setActiveIndex] = useState(0)
 
   useEffect(() => {
-    if (!selectedEvent) return
+    const interval = window.setInterval(() => {
+      setActiveIndex((currentIndex) => (currentIndex + 1) % eventCards.length)
+    }, 5000)
 
-    const onEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setSelectedEvent(null)
-      }
-    }
+    return () => window.clearInterval(interval)
+  }, [])
 
-    document.body.style.overflow = 'hidden'
-    window.addEventListener('keydown', onEscape)
-
-    return () => {
-      document.body.style.overflow = ''
-      window.removeEventListener('keydown', onEscape)
-    }
-  }, [selectedEvent])
+  const nextCard = () => {
+    setActiveIndex((currentIndex) => (currentIndex + 1) % eventCards.length)
+  }
 
   return (
-    <>
-      <section
-        id="events"
-        className="scroll-mt-18 flex flex-col gap-4 border-b border-(--grid-line) py-5 md:py-6"
-      >
-        <div className="grid gap-3 px-4 sm:px-6 md:px-10 lg:grid-cols-3">
-          {events.map((event) => (
-            <button
-              key={event.title}
-              type="button"
-              onClick={() => setSelectedEvent(event)}
-              className="flex min-h-40 flex-col justify-between rounded-2xl border border-(--grid-line) bg-white p-4 text-left shadow-[0_10px_24px_rgba(45,62,52,0.08)] transition hover:-translate-y-1 hover:shadow-[0_16px_30px_rgba(45,62,52,0.14)]"
-            >
-              {event.image ? (
-                <div className="mb-3 overflow-hidden rounded-xl border border-(--grid-line)">
-                  <img
-                    src={event.image}
-                    alt={event.title}
-                    className="h-32 w-full object-cover"
-                  />
-                </div>
-              ) : null}
+    <section
+      id="events"
+      className={`${SECTION_SCROLL_MARGIN} ${SECTION_MIN_HEIGHT} border-b border-(--grid-line) bg-[#f0ebdf] ${SECTION_PAD_X} ${SECTION_PAD_Y}`}
+    >
+      <div className={`${SECTION_WIDTH} grid gap-6 lg:grid-cols-[0.75fr_1.25fr] lg:items-center`}>
+        <div className="max-w-xl">
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-(--forest)/90">
+            Events
+          </p>
+          <h2 className="font-display mt-3 text-3xl leading-tight text-(--ink) md:text-4xl lg:text-5xl">
+            Featured
+            <br />
+            Event Stack
+          </h2>
+          <p className="mt-4 max-w-md text-sm leading-relaxed text-(--ink)/75 md:text-base">
+            The cards rotate automatically every 5 seconds. Tap Next to advance manually.
+          </p>
 
-              <h2 className="font-display text-xl text-(--ink) md:text-[1.9rem]">
-                {event.title}
-              </h2>
-              <p className="mt-2 text-xs font-bold uppercase tracking-wide text-(--forest) md:text-sm">
-                {event.time}
-              </p>
-              <p className="mt-2 text-xs leading-relaxed text-(--ink)/75 md:text-sm">
-                {event.details}
-              </p>
-              <p className="mt-3 text-[10px] font-semibold uppercase tracking-[0.14em] text-(--forest)/80">
-                Tap for more details
-              </p>
-            </button>
-          ))}
-        </div>
-
-        <div
-          id="sermon-library"
-          className="scroll-mt-18 grid gap-5 bg-[#f0ebdf] px-4 py-7 sm:px-6 md:px-10 md:py-8 lg:grid-cols-[1fr_1.2fr]"
-        >
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-(--forest)/90">
-              Sermon Library
-            </p>
-            <h3 className="font-display mt-3 text-2xl leading-tight text-(--ink) md:text-3xl">
-              Weekly Messages
-              <br />
-              And Study Notes
-            </h3>
-            <p className="mt-4 max-w-md text-sm leading-relaxed text-(--ink)/75">
-              Keep this area ready for sermon thumbnails and featured study
-              resources.
-            </p>
-          </div>
-          <div className="rounded-3xl border-2 border-dashed border-(--forest)/45 bg-white p-5">
-            <div className="placeholder-grid flex h-48 items-center justify-center rounded-2xl border border-dashed border-(--gold)/70 bg-(--paper) px-4 text-center md:h-56">
-              <p className="font-display text-xl text-(--forest)/70 md:text-2xl">
-                Blank Content Image Area
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {selectedEvent ? (
-        <div
-          className="fixed inset-0 z-70 flex items-center justify-center bg-black/60 p-4"
-          onClick={() => setSelectedEvent(null)}
-        >
-          <div
-            className="relative max-h-[88svh] w-full max-w-xl overflow-y-auto rounded-3xl bg-(--shell) p-4 shadow-[0_20px_45px_rgba(0,0,0,0.35)] md:p-5"
-            onClick={(event) => event.stopPropagation()}
+          <button
+            type="button"
+            onClick={nextCard}
+            className="mt-6 inline-flex items-center rounded-full bg-linear-to-r from-(--primary-mid) to-(--accent) px-6 py-3 text-sm font-bold tracking-wide text-white shadow-[0_12px_28px_rgba(45,62,52,0.18)] transition hover:shadow-[0_16px_32px_rgba(45,62,52,0.24)]"
           >
-            <button
-              type="button"
-              aria-label="Close modal"
-              onClick={() => setSelectedEvent(null)}
-              className="absolute right-3 top-3 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-[#ff4d5a]/70 bg-[#2a0f13] text-2xl font-bold leading-none text-[#ff5d6a] shadow-[0_8px_18px_rgba(255,77,90,0.28)] transition hover:bg-[#3a1218]"
-            >
-              ×
-            </button>
+            Next Card
+          </button>
+        </div>
 
-            {selectedEvent.image ? (
-              <div className="mb-3 overflow-hidden rounded-2xl border border-(--grid-line) bg-black/5">
-                <img
-                  src={selectedEvent.image}
-                  alt={selectedEvent.title}
-                  className="max-h-[26svh] w-full object-contain md:max-h-[30svh]"
-                />
-              </div>
-            ) : null}
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-(--forest)/80">
-              Event Details
-            </p>
-            <h3 className="font-display mt-2 text-2xl text-(--ink) md:text-3xl">
-              {selectedEvent.title}
-            </h3>
-            <p className="mt-2 text-xs font-bold uppercase tracking-[0.08em] text-(--forest) md:text-sm">
-              {selectedEvent.time}
-            </p>
-            <p className="mt-1 text-xs font-semibold text-(--ink)/70 md:text-sm">
-              Location: {selectedEvent.location}
-            </p>
-            <p className="mt-3 text-sm leading-relaxed text-(--ink)/85 md:text-base">
-              {selectedEvent.longDetails}
-            </p>
+        <div className="relative mx-auto w-full max-w-4xl px-1 py-8 sm:px-4">
+          <div className={SECTION_STACK_STAGE}>
+            {eventCards.map((card, index) => {
+              const offset = (index - activeIndex + eventCards.length) % eventCards.length
+              const isActive = offset === 0
+
+              return (
+                <article
+                  key={card.title}
+                  className={`absolute inset-0 overflow-hidden rounded-[1.75rem] border border-(--grid-line) bg-white shadow-[0_16px_40px_rgba(0,0,0,0.14)] transition-all duration-500 ease-out ${
+                    isActive
+                      ? 'z-30 translate-x-0 translate-y-0 scale-100 opacity-100'
+                      : offset === 1
+                        ? 'z-20 translate-x-5 translate-y-5 scale-[0.97] opacity-95'
+                        : 'z-10 translate-x-10 translate-y-10 scale-[0.94] opacity-85'
+                  }`}
+                >
+                  <div className="grid h-full lg:grid-cols-[0.9fr_1.1fr]">
+                    <div className="relative min-h-56 overflow-hidden lg:min-h-full">
+                      <img
+                        src={card.image}
+                        alt={card.title}
+                        className="h-full w-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
+                    </div>
+
+                    <div className="flex flex-col justify-between p-6 sm:p-7 lg:p-8">
+                      <div>
+                        <p className="text-xs font-bold uppercase tracking-[0.24em] text-(--forest)/80">
+                          {card.eyebrow}
+                        </p>
+                        <h3 className="font-display mt-3 text-2xl leading-tight text-(--ink) md:text-3xl lg:text-[2.4rem]">
+                          {card.title}
+                        </h3>
+                        <p className="mt-4 text-sm font-bold uppercase tracking-widest text-(--forest) md:text-base">
+                          {card.note}
+                        </p>
+                        <p className="mt-4 max-w-xl text-sm leading-relaxed text-(--ink)/80 md:text-base">
+                          {card.description}
+                        </p>
+                      </div>
+
+                      <div className="mt-8 flex items-center justify-between gap-4">
+                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-(--forest)/70">
+                          {String(activeIndex + 1).padStart(2, '0')} / {String(eventCards.length).padStart(2, '0')}
+                        </p>
+                        <button
+                          type="button"
+                          onClick={nextCard}
+                          className="inline-flex items-center rounded-full border border-(--forest)/25 bg-(--paper) px-5 py-2.5 text-sm font-semibold text-(--forest) transition hover:bg-white"
+                        >
+                          Next →
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              )
+            })}
           </div>
         </div>
-      ) : null}
-    </>
+      </div>
+    </section>
   )
 }
 

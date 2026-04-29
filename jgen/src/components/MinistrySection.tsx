@@ -1,4 +1,8 @@
 import { useState } from 'react'
+import {
+  SECTION_MIN_HEIGHT,
+  SECTION_SCROLL_MARGIN,
+} from '../styles/sectionLayout'
 
 const ministries = [
   {
@@ -24,8 +28,8 @@ function MinistrySection() {
 
   return (
     <>
-      <section id="ministries" className="scroll-mt-18 w-full min-h-[calc(100svh-72px)] relative overflow-hidden bg-black/20">
-        <div className="flex min-h-[calc(100svh-72px)] flex-col lg:flex-row lg:h-[calc(100svh-72px)]">
+      <section id="ministries" className={`${SECTION_SCROLL_MARGIN} w-full ${SECTION_MIN_HEIGHT} relative overflow-hidden bg-black/20`}>
+        <div className={`flex ${SECTION_MIN_HEIGHT} flex-col lg:flex-row lg:h-[calc(100svh-72px)]`}>
         {ministries.map((ministry) => (
           <button
             key={ministry.title}
