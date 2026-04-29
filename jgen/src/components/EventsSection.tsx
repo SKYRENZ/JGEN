@@ -113,6 +113,10 @@ function EventsSection() {
           <p className="mt-4 max-w-md text-sm leading-relaxed text-(--ink)/75 md:text-base">
             The cards rotate automatically every 5 seconds. Swipe on mobile or tap Next inside the card.
           </p>
+          <p className="mt-3 inline-flex items-center gap-2 rounded-full border border-(--grid-line) bg-white/60 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-(--forest)/75 md:hidden">
+            Swipe cards
+            <span aria-hidden="true">← →</span>
+          </p>
         </div>
 
         <div className="relative mx-auto w-full max-w-4xl px-1 py-8 sm:px-4 max-md:py-6">
