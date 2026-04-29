@@ -1,3 +1,5 @@
+import logoImage from '../assets/logo.png'
+
 type NavigationProps = {
   brandName: string
 }
@@ -12,8 +14,15 @@ const navItems = [
 function Navigation({ brandName }: NavigationProps) {
   return (
     <header className="fixed inset-x-0 top-0 z-50 flex flex-col items-start gap-4 border-b border-white/10 bg-[#0b0d10]/95 px-4 py-5 shadow-[0_10px_35px_rgba(0,0,0,0.35)] backdrop-blur-sm sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:px-6 md:px-10">
-      <div className="font-display text-xl font-bold tracking-wide text-[#e6e9ee] md:text-2xl">
-        {brandName}
+      <div className="flex items-center gap-3">
+        <img
+          src={logoImage}
+          alt="Jesus Generation logo"
+          className="h-10 w-10 rounded-md object-cover"
+        />
+        <div className="font-display text-xl font-bold tracking-wide text-[#e6e9ee] md:text-2xl">
+          {brandName}
+        </div>
       </div>
       <nav className="w-full sm:w-auto">
         <ul className="flex flex-wrap items-center gap-2 text-sm font-semibold text-[#c5cad2] sm:gap-3 md:gap-6">

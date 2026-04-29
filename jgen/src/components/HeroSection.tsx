@@ -1,6 +1,56 @@
+import { useEffect, useState } from 'react'
 import upcomingEventImage from '../assets/Uy May Nag Heart.png'
 
 function HeroSection() {
+  const [accentColor, setAccentColor] = useState({ r: 46, g: 54, b: 64 })
+
+  useEffect(() => {
+    let isMounted = true
+    const image = new Image()
+
+    image.onload = () => {
+      const canvas = document.createElement('canvas')
+      const context = canvas.getContext('2d')
+      if (!context) return
+
+      canvas.width = 28
+      canvas.height = 28
+      context.drawImage(image, 0, 0, canvas.width, canvas.height)
+
+      const data = context.getImageData(0, 0, canvas.width, canvas.height).data
+      let red = 0
+      let green = 0
+      let blue = 0
+      let count = 0
+
+      for (let i = 0; i < data.length; i += 4) {
+        const alpha = data[i + 3]
+        if (alpha < 120) continue
+        red += data[i]
+        green += data[i + 1]
+        blue += data[i + 2]
+        count += 1
+      }
+
+      if (count > 0 && isMounted) {
+        setAccentColor({
+          r: Math.round(red / count),
+          g: Math.round(green / count),
+          b: Math.round(blue / count),
+        })
+      }
+    }
+
+    image.src = upcomingEventImage
+
+    return () => {
+      isMounted = false
+    }
+  }, [])
+
+  const accent = (opacity: number) =>
+    `rgba(${accentColor.r}, ${accentColor.g}, ${accentColor.b}, ${opacity})`
+
   return (
     <main
       id="home"
@@ -51,28 +101,31 @@ function HeroSection() {
       </section>
 
       <aside className="placeholder-grid px-4 py-8 sm:px-6 md:px-10 md:py-14">
-        <div className="flex h-full min-h-72 flex-col rounded-3xl border border-dashed border-[var(--forest)]/45 bg-white/75 p-6 shadow-[0_14px_45px_rgba(15,18,24,0.18)]">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--forest)]/80">
-            Hero Image
-          </p>
-          <div className="relative mt-4 flex flex-1 items-center justify-center overflow-hidden rounded-2xl border-2 border-dashed border-[var(--gold)]/70 bg-[var(--paper)]">
+        <div
+          className="relative flex h-full min-h-72 items-center justify-center overflow-hidden rounded-3xl border-2 border-dashed p-2 shadow-[0_14px_45px_rgba(15,18,24,0.18)]"
+          style={{
+            borderColor: accent(0.45),
+            background: `radial-gradient(circle at 12% 20%, ${accent(0.25)} 0%, ${accent(0)} 48%), linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.72) 100%)`,
+          }}
+        >
+          <div className="relative h-full w-full overflow-hidden rounded-2xl border border-white/20">
             <img
               src={upcomingEventImage}
               alt="Upcoming event poster"
               className="h-full w-full object-cover"
             />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0b0d10]/30 via-transparent to-transparent" />
-            <div className="absolute left-3 top-3 rounded-full border border-white/30 bg-black/50 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-white backdrop-blur-sm">
+            <div className="font-event absolute left-3 top-3 rounded-full border border-white/35 bg-black/55 px-4 py-2 text-base uppercase tracking-[0.18em] text-white backdrop-blur-sm md:text-lg">
               Upcoming Event
             </div>
             <div className="absolute bottom-3 right-3 rounded-xl bg-white/90 px-3 py-1.5 text-xs font-bold text-[#0b0d10] shadow-sm">
               Feb 14 • 2PM
             </div>
           </div>
-          <p className="mt-4 text-sm font-medium text-[var(--ink)]/80">
-            Upcoming event highlight. Invite your friends and family.
-          </p>
         </div>
+        <p className="mt-4 text-sm font-medium text-[var(--ink)]/80">
+          Upcoming event highlight. Invite your friends and family.
+        </p>
       </aside>
     </main>
   )
