@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import proofServiceImage from '../assets/JGEN Proof service.png'
 import KatruepaGatheringImage from '../assets/Katruepa Gathering.png'
 import PusoNotebookImage from '../assets/Puso Notebook.jpg'
@@ -52,6 +52,7 @@ const eventCards = [
 
 function EventsSection() {
   const [activeIndex, setActiveIndex] = useState(0)
+  const touchStart = useRef<{ x: number; y: number } | null>(null)
 
   useEffect(() => {
     const interval = window.setInterval(() => {
@@ -63,6 +64,35 @@ function EventsSection() {
 
   const nextCard = () => {
     setActiveIndex((currentIndex) => (currentIndex + 1) % eventCards.length)
+  }
+
+  const previousCard = () => {
+    setActiveIndex((currentIndex) =>
+      (currentIndex - 1 + eventCards.length) % eventCards.length,
+    )
+  }
+
+  const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType === 'mouse') return
+    touchStart.current = { x: event.clientX, y: event.clientY }
+  }
+
+  const handlePointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (!touchStart.current || event.pointerType === 'mouse') return
+
+    const deltaX = event.clientX - touchStart.current.x
+    const deltaY = event.clientY - touchStart.current.y
+    const isHorizontalSwipe = Math.abs(deltaX) > 50 && Math.abs(deltaX) > Math.abs(deltaY)
+
+    if (isHorizontalSwipe) {
+      if (deltaX < 0) {
+        nextCard()
+      } else {
+        previousCard()
+      }
+    }
+
+    touchStart.current = null
   }
 
   return (
@@ -81,20 +111,20 @@ function EventsSection() {
             Event Stack
           </h2>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-(--ink)/75 md:text-base">
-            The cards rotate automatically every 5 seconds. Tap Next to advance manually.
+            The cards rotate automatically every 5 seconds. Swipe on mobile or tap Next inside the card.
           </p>
-
-          <button
-            type="button"
-            onClick={nextCard}
-            className="mt-6 inline-flex items-center rounded-full bg-linear-to-r from-(--primary-mid) to-(--accent) px-6 py-3 text-sm font-bold tracking-wide text-white shadow-[0_12px_28px_rgba(45,62,52,0.18)] transition hover:shadow-[0_16px_32px_rgba(45,62,52,0.24)]"
-          >
-            Next Card
-          </button>
         </div>
 
-        <div className="relative mx-auto w-full max-w-4xl px-1 py-8 sm:px-4">
-          <div className={SECTION_STACK_STAGE}>
+        <div className="relative mx-auto w-full max-w-4xl px-1 py-8 sm:px-4 max-md:py-6">
+          <div
+            className={`${SECTION_STACK_STAGE} mx-auto max-md:mt-4`}
+            onPointerDown={handlePointerDown}
+            onPointerUp={handlePointerUp}
+            onPointerCancel={() => {
+              touchStart.current = null
+            }}
+            style={{ touchAction: 'pan-y' }}
+          >
             {eventCards.map((card, index) => {
               const offset = (index - activeIndex + eventCards.length) % eventCards.length
               const isActive = offset === 0
