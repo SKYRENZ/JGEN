@@ -1,6 +1,10 @@
 import upcomingEventImage from '../assets/Uy May Nag Heart.png'
 
-function HeroSection() {
+type Props = {
+  onOpenForm?: () => void
+}
+
+function HeroSection({ onOpenForm }: Props) {
   return (
     <main
       id="home"
@@ -55,7 +59,16 @@ function HeroSection() {
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--forest)]/80">
             Hero Image
           </p>
-          <div className="relative mt-4 flex flex-1 items-center justify-center overflow-hidden rounded-2xl border-2 border-[var(--accent)] bg-[var(--paper)]">
+          <div
+            className="relative mt-4 flex flex-1 items-center justify-center overflow-hidden rounded-2xl border-2 border-[var(--accent)] bg-[var(--paper)] cursor-pointer"
+            role={onOpenForm ? 'button' : undefined}
+            tabIndex={onOpenForm ? 0 : undefined}
+            onClick={() => onOpenForm && onOpenForm()}
+            onKeyDown={(e) => {
+              if (!onOpenForm) return
+              if (e.key === 'Enter' || e.key === ' ') onOpenForm()
+            }}
+          >
             <img
               src={upcomingEventImage}
               alt="Upcoming event poster"
