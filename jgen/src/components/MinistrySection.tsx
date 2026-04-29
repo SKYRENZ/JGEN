@@ -1,4 +1,8 @@
 import { useState } from 'react'
+import spiritualMinistryImage from '../assets/ministries1.png'
+import creativeMediaMinistryImage from '../assets/ministtries2.png'
+import serviceMinistryImage from '../assets/ministries3.png'
+import leadershipDevelopmentImage from '../assets/ministries4.png'
 import {
   SECTION_MIN_HEIGHT,
   SECTION_SCROLL_MARGIN,
@@ -7,19 +11,19 @@ import {
 const ministries = [
   {
     title: 'Spiritual Ministries',
-    image: '/src/assets/ministries1.png',
+    image: spiritualMinistryImage,
   },
   {
     title: 'Creative & Media Ministries',
-    image: '/src/assets/ministtries2.png',
+    image: creativeMediaMinistryImage,
   },
   {
     title: 'Service Ministries',
-    image: '/src/assets/ministries3.png',
+    image: serviceMinistryImage,
   },
   {
     title: 'Leadership & Development',
-    image: '/src/assets/ministries4.png',
+    image: leadershipDevelopmentImage,
   }
 ]
 
