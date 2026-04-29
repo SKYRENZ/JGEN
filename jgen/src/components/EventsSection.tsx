@@ -63,36 +63,36 @@ function EventsSection() {
     <>
       <section
         id="events"
-        className="scroll-mt-[72px] flex min-h-[calc(100svh-72px)] flex-col justify-center gap-6 border-b border-[var(--grid-line)] py-6 md:py-8"
+        className="scroll-mt-18 flex flex-col gap-4 border-b border-(--grid-line) py-5 md:py-6"
       >
-        <div className="grid gap-6 px-4 sm:px-6 md:px-10 lg:grid-cols-3">
+        <div className="grid gap-3 px-4 sm:px-6 md:px-10 lg:grid-cols-3">
           {events.map((event) => (
             <button
               key={event.title}
               type="button"
               onClick={() => setSelectedEvent(event)}
-              className="flex min-h-[220px] flex-col justify-between rounded-2xl border border-[var(--grid-line)] bg-white p-7 text-left shadow-[0_10px_24px_rgba(45,62,52,0.08)] transition hover:-translate-y-1 hover:shadow-[0_16px_30px_rgba(45,62,52,0.14)]"
+              className="flex min-h-40 flex-col justify-between rounded-2xl border border-(--grid-line) bg-white p-4 text-left shadow-[0_10px_24px_rgba(45,62,52,0.08)] transition hover:-translate-y-1 hover:shadow-[0_16px_30px_rgba(45,62,52,0.14)]"
             >
               {event.image ? (
-                <div className="mb-5 overflow-hidden rounded-xl border border-[var(--grid-line)]">
+                <div className="mb-3 overflow-hidden rounded-xl border border-(--grid-line)">
                   <img
                     src={event.image}
                     alt={event.title}
-                    className="h-56 w-full object-cover"
+                    className="h-32 w-full object-cover"
                   />
                 </div>
               ) : null}
 
-              <h2 className="font-display text-4xl text-[var(--ink)] md:text-[2.2rem]">
+              <h2 className="font-display text-xl text-(--ink) md:text-[1.9rem]">
                 {event.title}
               </h2>
-              <p className="mt-3 text-xl font-bold uppercase tracking-wide text-[var(--forest)] md:text-[1.3rem]">
+              <p className="mt-2 text-xs font-bold uppercase tracking-wide text-(--forest) md:text-sm">
                 {event.time}
               </p>
-              <p className="mt-4 text-xl leading-relaxed text-[var(--ink)]/75 md:text-[1.35rem]">
+              <p className="mt-2 text-xs leading-relaxed text-(--ink)/75 md:text-sm">
                 {event.details}
               </p>
-              <p className="mt-5 text-sm font-semibold uppercase tracking-[0.14em] text-[var(--forest)]/80">
+              <p className="mt-3 text-[10px] font-semibold uppercase tracking-[0.14em] text-(--forest)/80">
                 Tap for more details
               </p>
             </button>
@@ -100,26 +100,26 @@ function EventsSection() {
         </div>
 
         <div
-          id="ministries"
-          className="scroll-mt-[72px] grid gap-6 bg-[#f0ebdf] px-4 py-8 sm:px-6 md:px-10 md:py-10 lg:grid-cols-[1fr_1.2fr]"
+          id="sermon-library"
+          className="scroll-mt-18 grid gap-5 bg-[#f0ebdf] px-4 py-7 sm:px-6 md:px-10 md:py-8 lg:grid-cols-[1fr_1.2fr]"
         >
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--forest)]/90">
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-(--forest)/90">
               Sermon Library
             </p>
-            <h3 className="font-display mt-3 text-3xl leading-tight text-[var(--ink)] md:text-4xl">
+            <h3 className="font-display mt-3 text-2xl leading-tight text-(--ink) md:text-3xl">
               Weekly Messages
               <br />
               And Study Notes
             </h3>
-            <p className="mt-4 max-w-md text-sm leading-relaxed text-[var(--ink)]/75 md:text-base">
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-(--ink)/75">
               Keep this area ready for sermon thumbnails and featured study
               resources.
             </p>
           </div>
-          <div className="rounded-3xl border-2 border-dashed border-[var(--forest)]/45 bg-white p-6">
-            <div className="placeholder-grid flex h-56 items-center justify-center rounded-2xl border border-dashed border-[var(--gold)]/70 bg-[var(--paper)] px-4 text-center md:h-64">
-              <p className="font-display text-2xl text-[var(--forest)]/70">
+          <div className="rounded-3xl border-2 border-dashed border-(--forest)/45 bg-white p-5">
+            <div className="placeholder-grid flex h-48 items-center justify-center rounded-2xl border border-dashed border-(--gold)/70 bg-(--paper) px-4 text-center md:h-56">
+              <p className="font-display text-xl text-(--forest)/70 md:text-2xl">
                 Blank Content Image Area
               </p>
             </div>
@@ -129,11 +129,11 @@ function EventsSection() {
 
       {selectedEvent ? (
         <div
-          className="fixed inset-0 z-[70] flex items-center justify-center bg-black/60 p-4"
+          className="fixed inset-0 z-70 flex items-center justify-center bg-black/60 p-4"
           onClick={() => setSelectedEvent(null)}
         >
           <div
-            className="relative max-h-[90svh] w-full max-w-2xl overflow-hidden rounded-3xl bg-[var(--shell)] p-4 shadow-[0_20px_45px_rgba(0,0,0,0.35)] md:p-6"
+            className="relative max-h-[88svh] w-full max-w-xl overflow-y-auto rounded-3xl bg-(--shell) p-4 shadow-[0_20px_45px_rgba(0,0,0,0.35)] md:p-5"
             onClick={(event) => event.stopPropagation()}
           >
             <button
@@ -146,27 +146,27 @@ function EventsSection() {
             </button>
 
             {selectedEvent.image ? (
-              <div className="mb-4 overflow-hidden rounded-2xl border border-[var(--grid-line)] bg-black/5">
+              <div className="mb-3 overflow-hidden rounded-2xl border border-(--grid-line) bg-black/5">
                 <img
                   src={selectedEvent.image}
                   alt={selectedEvent.title}
-                  className="max-h-[36svh] w-full object-contain md:max-h-[42svh]"
+                  className="max-h-[26svh] w-full object-contain md:max-h-[30svh]"
                 />
               </div>
             ) : null}
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--forest)]/80">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-(--forest)/80">
               Event Details
             </p>
-            <h3 className="font-display mt-2 text-3xl text-[var(--ink)] md:text-4xl">
+            <h3 className="font-display mt-2 text-2xl text-(--ink) md:text-3xl">
               {selectedEvent.title}
             </h3>
-            <p className="mt-2 text-sm font-bold uppercase tracking-[0.08em] text-[var(--forest)] md:text-base">
+            <p className="mt-2 text-xs font-bold uppercase tracking-[0.08em] text-(--forest) md:text-sm">
               {selectedEvent.time}
             </p>
-            <p className="mt-1 text-sm font-semibold text-[var(--ink)]/70">
+            <p className="mt-1 text-xs font-semibold text-(--ink)/70 md:text-sm">
               Location: {selectedEvent.location}
             </p>
-            <p className="mt-3 text-base leading-relaxed text-[var(--ink)]/85">
+            <p className="mt-3 text-sm leading-relaxed text-(--ink)/85 md:text-base">
               {selectedEvent.longDetails}
             </p>
           </div>

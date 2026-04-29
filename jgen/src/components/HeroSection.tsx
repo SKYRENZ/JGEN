@@ -1,4 +1,4 @@
-import upcomingEventImage from '../assets/Uy May Nag Heart.png'
+import upcomingEventImage from '../assets/JGEN 21st anniv.png'
 
 type Props = {
   onOpenForm?: () => void
@@ -71,7 +71,7 @@ function HeroSection({ onOpenForm }: Props) {
           >
             <img
               src={upcomingEventImage}
-              alt="Upcoming event poster"
+              alt="JGen 21st anniversary poster"
               className="h-full w-full object-cover"
             />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0b0d10]/30 via-transparent to-transparent" />
@@ -79,7 +79,7 @@ function HeroSection({ onOpenForm }: Props) {
               Upcoming Event
             </div>
             <div className="absolute bottom-3 right-3 rounded-xl bg-white/90 px-3 py-1.5 text-xs font-bold text-[#0b0d10] shadow-sm">
-              Feb 14 • 2PM
+              May 23 • 2PM
             </div>
           </div>
           <p className="mt-4 text-sm font-medium text-[var(--ink)]/80">
